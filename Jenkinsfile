@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('uat') {
-      steps {
-        sh 'echo "UAT"'
+      parallel {
+        stage('uat') {
+          steps {
+            sh 'echo "UAT"'
+          }
+        }
+        stage('dev') {
+          steps {
+            sh 'echo "you are at dev"'
+          }
+        }
       }
     }
     stage('prod') {
